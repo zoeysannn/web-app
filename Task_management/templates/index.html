@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="designstyle">
+                <ul class="designstyle">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+
+    </div>
+    <section>
+        <div class="container">
+            <form class="formstyle" action="/add" method="post">
+                <!-- <br> -->
+                <label>Task title:</label>
+                <input type="text" id="title" name="title">
+
+                <label>Description:</label>
+                <input type="text" id="desc" name="description" size="65"><br><br>
+
+                <label>Due date:</label>
+                <input type="date" id="date" name="date" min="{{ current_date }}"><br><br>
+
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="Not started">Not started</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Finished">Finished</option>
+                </select>
+                <input type="submit" value="SUBMIT"><br>
+            </form>
+            apt
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <ul>
+                {% for task in tasks %}
+                <!-- <strong>{{ task.title }}</strong><br><br> -->
+                <li>
+                    <h3><strong>{{ task.title }}</strong></h3>
+                    Task Description: {{ task.description }}<br>
+                    Due Date: {{ task.date }}<br>
+                    Status: {{ task.status }}<br>
+                    Id: {{ task.id }}<br>
+                    Completed: {{ task.completed }}<br><br>
+
+                    {% if task.completed!='True' %}
+                    <a href="{{ url_for('complete_task', task_id=task.id) }}">Mark as completed</a>
+                    {% endif %}
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}">Remove Task</a>
+
+                    <a href="{{ url_for('editing', task_id=task.id) }}">Edit Task</a>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+</body>
+
+</html>

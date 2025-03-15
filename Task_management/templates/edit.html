@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Task Manager</title>
+        <link rel="stylesheet" href="../static/css/styles.css">
+    </head>
+
+    <body>
+
+        <form class="formstyle" action="/update" method="post">
+            <br>
+            <input type="id" id="id" name="id" value="{{ data.id }}" hidden><br><br>
+
+            <label>Task title:</label>
+            <input type="text" id="title" name="title" value="{{ data.title }}"><br><br>
+            
+            <label>Description:</label>
+            <input type="text" id="desc" name="description" size="65" value="{{ data.description }}"><br><br>
+            
+            <label>Due date:</label>
+            <input type="date" id="date" name="date" min="{{ current_date }}" value="{{ data.date }}"><br><br>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Not started">Not started</option>
+                <option value="In progress">In progress</option>
+                <option value="Finished">Finished</option>
+            </select><br><br>
+            <input type="submit" value="SUBMIT"><br>
+        </form>
+
+    </body>
+
+</html>
